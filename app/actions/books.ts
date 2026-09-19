@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAppUser } from "@/lib/auth";
-import { copyBook, createBook, deleteBook, getBook, updateBook } from "@/lib/books";
+import { copyBook, createBook, deleteBook, getBook, updateBook, computeNextNote } from "@/lib/books";
 import { canReadShelf } from "@/lib/friendships";
 import { isBookStatus } from "@/lib/types";
 import { readAuthor, readFormats, readMetadata, readNote, readOptionalDate, readStatus, readTitle } from "@/lib/forms";
@@ -108,6 +108,16 @@ export async function changeBookStatusAction(
     return { error: null, success: true };
   }
 
+  const rawNote = String(formData.get("note") ?? "").trim();
+  const skipped = formData.get("skip") === "1";
+  const nextNote = computeNextNote({
+    newStatus: status,
+    oldStatus: book.status,
+    submittedNote: rawNote,
+    skipped,
+    existingNote: book.note ?? null,
+  });
+
   await updateBook(id, {
     title: book.title,
     status,
@@ -116,7 +126,7 @@ export async function changeBookStatusAction(
     finishedAt: book.finishedAt ?? null,
     abandonedAt: book.abandonedAt ?? null,
     dateAdded: book.dateAdded ?? null,
-    note: book.note ?? null,
+    note: nextNote,
     author: book.author ?? null,
     metadata: book.metadata,
     oldStatus: book.status,

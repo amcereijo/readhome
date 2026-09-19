@@ -10,6 +10,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "npx tsx scripts/migrate.ts",
     "db:smoke": "npx tsx scripts/smoke.ts",
+    "db:smoke:review-prompt": "npx tsx scripts/smoke-review-prompt.ts",
     "db:backfill-google-books": "npx tsx scripts/backfill-google-books.ts",
     "db:migrate-isbn": "npx tsx scripts/migrate-isbn-metadata.ts"
   },

@@ -90,7 +90,13 @@
     "coverAlt": "Portada de {title}",
     "coverPlaceholder": "Sin portada",
     "viewGridAria": "Cambiar a vista de cuadrícula",
-    "viewListAria": "Cambiar a vista de lista"
+    "viewListAria": "Cambiar a vista de lista",
+    "continueToRead": "Continuar",
+    "reviewPromptTitle": "¿Qué te pareció?",
+    "reviewPromptDescription": "Comparte una impresión rápida sobre este libro. Siempre puedes editarla después.",
+    "reviewPlaceholder": "¿Qué te pareció?",
+    "saveWithReview": "Guardar reseña",
+    "skipReview": "Saltar"
   },
   "status": {
     "to-read": "Por leer",

@@ -90,7 +90,13 @@
     "coverAlt": "Cover of {title}",
     "coverPlaceholder": "No cover",
     "viewGridAria": "Switch to grid view",
-    "viewListAria": "Switch to list view"
+    "viewListAria": "Switch to list view",
+    "continueToRead": "Continue",
+    "reviewPromptTitle": "How was it?",
+    "reviewPromptDescription": "Share a quick thought about this book. You can always edit it later.",
+    "reviewPlaceholder": "What did you think?",
+    "saveWithReview": "Save review",
+    "skipReview": "Skip"
   },
   "status": {
     "to-read": "To read",

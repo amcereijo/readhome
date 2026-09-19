@@ -45,6 +45,21 @@ export function computeDatesForStatus(
   }
 }
 
+export function computeNextNote(args: {
+  newStatus: BookStatus;
+  oldStatus: BookStatus;
+  submittedNote: string;
+  skipped: boolean;
+  existingNote: string | null;
+}): string | null {
+  const { newStatus, oldStatus, submittedNote, skipped, existingNote } = args;
+  const trimmed = submittedNote.trim();
+  if (newStatus === "read" && oldStatus !== "read" && !skipped && trimmed.length > 0) {
+    return trimmed;
+  }
+  return existingNote;
+}
+
 function parseFormats(raw: string): BookFormat[] {
   try {
     const parsed = JSON.parse(raw) as unknown;
