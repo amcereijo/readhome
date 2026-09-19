@@ -44,6 +44,7 @@ type Props = {
   books: BookRecord[];
   editable?: boolean;
   friendView?: boolean;
+  publicView?: boolean;
   dictionary: Dictionary;
   locale: Locale;
   recommendFriends?: AppUser[];
@@ -147,10 +148,12 @@ function BookDetails({
   book,
   dictionary,
   formatDate,
+  publicView = false,
 }: {
   book: BookRecord;
   dictionary: Dictionary;
   formatDate: (value: string | null | undefined) => string | null;
+  publicView?: boolean;
 }) {
   return (
     <dl className="space-y-3">
@@ -215,7 +218,7 @@ function BookDetails({
         </div>
       ) : null}
 
-      {Object.keys(book.metadata).length > 0 ? (
+      {Object.keys(book.metadata).length > 0 && !publicView ? (
         <div>
           <dt className="mb-2 inline-block rounded-md bg-teal-50 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-teal-800">
             {dictionary.shelf.metadata}
@@ -332,6 +335,7 @@ export function BookList({
   books,
   editable = false,
   friendView = false,
+  publicView = false,
   dictionary,
   locale,
   recommendFriends,
@@ -371,46 +375,48 @@ export function BookList({
 
   return (
     <div>
-      <div className="mb-4 flex flex-wrap items-center gap-2 sm:gap-3">
-        <label htmlFor="sort" className="shrink-0 text-sm font-medium text-zinc-700">
-          {dictionary.shelf.sort}
-        </label>
-        <select
-          id="sort"
-          value={sort}
-          onChange={(e) => setSort(e.target.value as `${SortKey}-${SortDir}`)}
-          className="min-w-0 max-w-full flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 sm:flex-none"
-        >
-          {sortOptions.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-        <div className="flex shrink-0 items-center gap-1" role="group" aria-label={dictionary.shelf.sort}>
-          <IconButton
-            variant={viewMode === "grid" ? "primary" : "secondary"}
-            onClick={() => setViewMode("grid")}
-            aria-label={dictionary.shelf.viewGridAria}
-            aria-pressed={viewMode === "grid"}
-            title={dictionary.shelf.viewGridAria}
-            icon={<LayoutGrid className="h-5 w-5" />}
-          />
-          <IconButton
-            variant={viewMode === "list" ? "primary" : "secondary"}
-            onClick={() => setViewMode("list")}
-            aria-label={dictionary.shelf.viewListAria}
-            aria-pressed={viewMode === "list"}
-            title={dictionary.shelf.viewListAria}
-            icon={<List className="h-5 w-5" />}
-          />
+      {publicView ? null : (
+        <div className="mb-4 flex flex-wrap items-center gap-2 sm:gap-3">
+          <label htmlFor="sort" className="shrink-0 text-sm font-medium text-zinc-700">
+            {dictionary.shelf.sort}
+          </label>
+          <select
+            id="sort"
+            value={sort}
+            onChange={(e) => setSort(e.target.value as `${SortKey}-${SortDir}`)}
+            className="min-w-0 max-w-full flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 sm:flex-none"
+          >
+            {sortOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+          <div className="flex shrink-0 items-center gap-1" role="group" aria-label={dictionary.shelf.sort}>
+            <IconButton
+              variant={viewMode === "grid" ? "primary" : "secondary"}
+              onClick={() => setViewMode("grid")}
+              aria-label={dictionary.shelf.viewGridAria}
+              aria-pressed={viewMode === "grid"}
+              title={dictionary.shelf.viewGridAria}
+              icon={<LayoutGrid className="h-5 w-5" />}
+            />
+            <IconButton
+              variant={viewMode === "list" ? "primary" : "secondary"}
+              onClick={() => setViewMode("list")}
+              aria-label={dictionary.shelf.viewListAria}
+              aria-pressed={viewMode === "list"}
+              title={dictionary.shelf.viewListAria}
+              icon={<List className="h-5 w-5" />}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {viewMode === "list" ? (
         <ul className="space-y-3">
           {sorted.map((book) => {
-            const expanded = expandedId === book.id;
+            const expanded = publicView ? true : expandedId === book.id;
             const lastDate = lastMeaningfulDate(book, formatDate, t);
             return (
               <li key={book.id}>
@@ -434,71 +440,73 @@ export function BookList({
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-row items-center justify-end gap-2 sm:gap-1">
-                      {editable ? (
-                        <button
-                          type="button"
-                          onClick={() => setExpandedId(expanded ? null : book.id)}
-                          aria-label={expanded ? dictionary.shelf.showLessAria : dictionary.shelf.seeMoreAria}
-                          aria-expanded={expanded}
-                          className="mr-auto inline-flex items-center gap-1 text-sm font-medium text-teal-700 hover:text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-offset-1 rounded sm:!hidden"
-                        >
-                          <span>{expanded ? dictionary.shelf.showLess : dictionary.shelf.seeMore}</span>
-                          {expanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                        </button>
-                      ) : null}
-                      {editable ? (
-                        <div className="flex flex-row items-center gap-1">
-                          <ChangeStatusButton
-                            bookId={book.id}
-                            currentStatus={book.status}
-                            dictionary={dictionary}
-                            ariaLabel={dictionary.shelf.changeStatusAria}
-                          />
-                          <IconLinkButton
-                            variant="secondary"
-                            href={`/books/${book.id}/edit`}
-                            aria-label={dictionary.shelf.editAria}
-                            title={dictionary.shelf.edit}
-                            icon={<Pencil className="h-5 w-5" />}
-                          />
-                          {recommendFriends ? (
-                            <RecommendPanel
-                              bookId={book.id}
-                              friends={recommendFriends}
-                              dictionary={dictionary}
-                              ariaLabel={dictionary.shelf.recommendAria}
-                            />
-                          ) : null}
-                          <form action={deleteBookAction}>
-                            <input type="hidden" name="id" value={book.id} />
-                            <DeleteBookSubmit
-                              ariaLabel={dictionary.shelf.deleteAria}
-                              title={dictionary.shelf.delete}
-                              icon={<Trash2 className="h-5 w-5" />}
-                            />
-                          </form>
-                        </div>
-                      ) : friendView ? (
-                        <div className="flex items-center gap-1">
-                          <IconButton
-                            variant="secondary"
+                    {publicView ? null : (
+                      <div className="flex flex-row items-center justify-end gap-2 sm:gap-1">
+                        {editable ? (
+                          <button
+                            type="button"
                             onClick={() => setExpandedId(expanded ? null : book.id)}
-                            aria-label={expanded ? dictionary.shelf.showLessAria : dictionary.shelf.detailsAria}
-                            title={expanded ? dictionary.shelf.showLess : dictionary.shelf.details}
-                            icon={expanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
-                          />
-                          <AddToShelfButton
-                            bookId={book.id}
-                            dictionary={dictionary}
-                            ariaLabel={dictionary.shelf.addToShelfAria}
-                          />
-                        </div>
-                      ) : null}
-                    </div>
+                            aria-label={expanded ? dictionary.shelf.showLessAria : dictionary.shelf.seeMoreAria}
+                            aria-expanded={expanded}
+                            className="mr-auto inline-flex items-center gap-1 text-sm font-medium text-teal-700 hover:text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-offset-1 rounded sm:!hidden"
+                          >
+                            <span>{expanded ? dictionary.shelf.showLess : dictionary.shelf.seeMore}</span>
+                            {expanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                          </button>
+                        ) : null}
+                        {editable ? (
+                          <div className="flex flex-row items-center gap-1">
+                            <ChangeStatusButton
+                              bookId={book.id}
+                              currentStatus={book.status}
+                              dictionary={dictionary}
+                              ariaLabel={dictionary.shelf.changeStatusAria}
+                            />
+                            <IconLinkButton
+                              variant="secondary"
+                              href={`/books/${book.id}/edit`}
+                              aria-label={dictionary.shelf.editAria}
+                              title={dictionary.shelf.edit}
+                              icon={<Pencil className="h-5 w-5" />}
+                            />
+                            {recommendFriends ? (
+                              <RecommendPanel
+                                bookId={book.id}
+                                friends={recommendFriends}
+                                dictionary={dictionary}
+                                ariaLabel={dictionary.shelf.recommendAria}
+                              />
+                            ) : null}
+                            <form action={deleteBookAction}>
+                              <input type="hidden" name="id" value={book.id} />
+                              <DeleteBookSubmit
+                                ariaLabel={dictionary.shelf.deleteAria}
+                                title={dictionary.shelf.delete}
+                                icon={<Trash2 className="h-5 w-5" />}
+                              />
+                            </form>
+                          </div>
+                        ) : friendView ? (
+                          <div className="flex items-center gap-1">
+                            <IconButton
+                              variant="secondary"
+                              onClick={() => setExpandedId(expanded ? null : book.id)}
+                              aria-label={expanded ? dictionary.shelf.showLessAria : dictionary.shelf.detailsAria}
+                              title={expanded ? dictionary.shelf.showLess : dictionary.shelf.details}
+                              icon={expanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                            />
+                            <AddToShelfButton
+                              bookId={book.id}
+                              dictionary={dictionary}
+                              ariaLabel={dictionary.shelf.addToShelfAria}
+                            />
+                          </div>
+                        ) : null}
+                      </div>
+                    )}
                   </div>
 
-                  {editable ? (
+                  {publicView ? null : editable ? (
                     <button
                       type="button"
                       onClick={() => setExpandedId(expanded ? null : book.id)}
@@ -513,7 +521,7 @@ export function BookList({
 
                   {expanded ? (
                     <div className="border-t border-zinc-100 pt-4 text-sm">
-                      <BookDetails book={book} dictionary={dictionary} formatDate={formatDate} />
+                      <BookDetails book={book} dictionary={dictionary} formatDate={formatDate} publicView={publicView} />
                     </div>
                   ) : null}
                 </Card>
@@ -521,7 +529,7 @@ export function BookList({
             );
           })}
         </ul>
-      ) : (
+      ) : publicView ? null : (
         <ul className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
           {sorted.map((book) => {
             const lastDate = lastMeaningfulDate(book, formatDate, t);

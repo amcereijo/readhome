@@ -99,7 +99,19 @@ export async function listAcceptedFriends(userId: string) {
   if (friendIds.length === 0) return [];
 
   const friendRows = await db.select().from(users);
-  return friendRows.filter((user) => friendIds.includes(user.id) && user.username);
+  return friendRows.filter((user) => friendIds.includes(user.id) && user.username).map(toUser);
+}
+
+function toUser(row: typeof users.$inferSelect) {
+  return {
+    id: row.id,
+    clerkId: row.clerkId,
+    username: row.username,
+    pendingInviteToken: row.pendingInviteToken,
+    publicShelfToken: row.publicShelfToken,
+    publicShelfEnabled: row.publicShelfEnabled === "1",
+    createdAt: row.createdAt,
+  };
 }
 
 export async function createInviteLink(creatorId: string) {

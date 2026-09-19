@@ -1,9 +1,10 @@
 import { cookies } from "next/headers";
-import { eq, inArray } from "drizzle-orm";
+import { and, eq, inArray } from "drizzle-orm";
 import { INVITE_COOKIE } from "./auth-constants";
+import { type BookCounts, countBooksByStatus, listBooks } from "./books";
 import { db } from "./db";
 import { users } from "./db/schema";
-import type { AppUser } from "./types";
+import type { AppUser, BookRecord } from "./types";
 
 function nowIso() {
   return new Date().toISOString();
@@ -15,6 +16,8 @@ function toUser(row: typeof users.$inferSelect): AppUser {
     clerkId: row.clerkId,
     username: row.username,
     pendingInviteToken: row.pendingInviteToken,
+    publicShelfToken: row.publicShelfToken,
+    publicShelfEnabled: row.publicShelfEnabled === "1",
     createdAt: row.createdAt,
   };
 }
@@ -56,14 +59,19 @@ export async function ensureUser(clerkId: string) {
 
   const jar = await cookies();
   const pendingInviteToken = jar.get(INVITE_COOKIE)?.value ?? null;
-  const user: AppUser = {
+  await db.insert(users).values({
     id: crypto.randomUUID(),
     clerkId,
     username: null,
     pendingInviteToken,
+    publicShelfToken: null,
+    publicShelfEnabled: "0",
     createdAt: nowIso(),
-  };
-  await db.insert(users).values(user);
+  });
+  const user = await getUserByClerkId(clerkId);
+  if (!user) {
+    throw new Error("User not found immediately after creation");
+  }
   return { user, created: true };
 }
 
@@ -74,4 +82,60 @@ export async function claimUsername(userId: string, username: string) {
 
 export async function clearPendingInvite(userId: string) {
   await db.update(users).set({ pendingInviteToken: null }).where(eq(users.id, userId));
+}
+
+export type PublicShelfSnapshot = {
+  owner: { id: string; username: string; createdAt: string };
+  books: BookRecord[];
+  counts: BookCounts;
+};
+
+export async function getPublicShelfByToken(token: string): Promise<PublicShelfSnapshot | null> {
+  const [row] = await db
+    .select({
+      id: users.id,
+      username: users.username,
+      publicShelfEnabled: users.publicShelfEnabled,
+      createdAt: users.createdAt,
+    })
+    .from(users)
+    .where(and(eq(users.publicShelfToken, token), eq(users.publicShelfEnabled, "1")))
+    .limit(1);
+  if (!row || !row.username) return null;
+
+  const [books, counts] = await Promise.all([
+    listBooks(row.id),
+    countBooksByStatus(row.id),
+  ]);
+
+  return {
+    owner: { id: row.id, username: row.username, createdAt: row.createdAt },
+    books,
+    counts,
+  };
+}
+
+export async function mintPublicShelfToken(userId: string): Promise<string> {
+  const token = crypto.randomUUID();
+  await db
+    .update(users)
+    .set({ publicShelfToken: token, publicShelfEnabled: "1" })
+    .where(eq(users.id, userId));
+  return token;
+}
+
+export async function rotatePublicShelfToken(userId: string): Promise<string> {
+  const token = crypto.randomUUID();
+  await db
+    .update(users)
+    .set({ publicShelfToken: token })
+    .where(eq(users.id, userId));
+  return token;
+}
+
+export async function disablePublicShelf(userId: string): Promise<void> {
+  await db
+    .update(users)
+    .set({ publicShelfToken: null, publicShelfEnabled: "0" })
+    .where(eq(users.id, userId));
 }

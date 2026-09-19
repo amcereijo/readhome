@@ -1,12 +1,18 @@
 import { sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
-export const users = sqliteTable("users", {
-  id: text("id").primaryKey(),
-  clerkId: text("clerk_id").notNull().unique(),
-  username: text("username").unique(),
-  pendingInviteToken: text("pending_invite_token"),
-  createdAt: text("created_at").notNull(),
-});
+export const users = sqliteTable(
+  "users",
+  {
+    id: text("id").primaryKey(),
+    clerkId: text("clerk_id").notNull().unique(),
+    username: text("username").unique(),
+    pendingInviteToken: text("pending_invite_token"),
+    publicShelfToken: text("public_shelf_token"),
+    publicShelfEnabled: text("public_shelf_enabled").notNull().default("0"),
+    createdAt: text("created_at").notNull(),
+  },
+  (table) => [uniqueIndex("users_public_shelf_token").on(table.publicShelfToken)],
+);
 
 export const books = sqliteTable("books", {
   id: text("id").primaryKey(),

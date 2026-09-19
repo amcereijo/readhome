@@ -36,6 +36,13 @@
       "when": 1787261988071,
       "tag": "0004_young_vision",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1789851797243,
+      "tag": "0005_add_public_shelf_share",
+      "breakpoints": true
     }
   ]
 }

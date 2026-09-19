@@ -311,5 +311,34 @@
     "warningWithCount": "{count} de tus libros terminados en este periodo no tienen un número de páginas. Añádelo para un total más exacto.",
     "warningWithCount_plural": "{count} de tus libros terminados en este periodo no tienen un número de páginas. Añádelo para un total más exacto.",
     "empty": "Aún no has terminado libros en este periodo."
+  },
+  "share": {
+    "title": "Comparte tu estantería",
+    "description": "Crea un enlace que cualquiera puede abrir, incluso sin cuenta.",
+    "create": "Crear enlace para compartir",
+    "creating": "Creando…",
+    "rotate": "Rotar enlace",
+    "rotating": "Rotando…",
+    "disable": "Desactivar compartido",
+    "disabling": "Desactivando…",
+    "enabledNotice": "Cualquiera con este enlace puede ver tu estantería. Rótalo para invalidarlo.",
+    "copyLink": "Copiar enlace",
+    "copied": "¡Copiado!",
+    "linkLabel": "Enlace público"
+  },
+  "publicShelf": {
+    "title": "Estantería de @{username}",
+    "subtitle": "{count} libro",
+    "subtitle_plural": "{count} libros",
+    "signUpPrompt": "Registra tus propias lecturas en The Reading Place.",
+    "signUpCta": "Empieza gratis",
+    "empty": "Esta estantería está vacía por ahora.",
+    "sectionCount": "{count} libro",
+    "sectionCount_plural": "{count} libros",
+    "searchPlaceholder": "Buscar por título o autor",
+    "searchLabel": "Buscar un libro en esta estantería",
+    "collapseSectionAria": "Contraer sección {status}",
+    "expandSectionAria": "Expandir sección {status}",
+    "noMatches": "Ningún libro coincide con tu búsqueda."
   }
 }

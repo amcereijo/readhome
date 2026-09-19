@@ -42,6 +42,8 @@ export type AppUser = {
   clerkId: string;
   username: string | null;
   pendingInviteToken: string | null;
+  publicShelfToken: string | null;
+  publicShelfEnabled: boolean;
   createdAt: string;
 };
 

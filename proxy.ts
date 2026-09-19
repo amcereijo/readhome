@@ -5,6 +5,7 @@ const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/invite(.*)",
+  "/share(.*)",
   // Clerk Frontend API proxy traffic must never be auth-gated — a 307 here
   // makes ClerkJS wipe otherwise-valid sessions.
   "/__clerk(.*)",

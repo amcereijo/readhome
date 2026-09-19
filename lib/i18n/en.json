@@ -311,5 +311,34 @@
     "warningWithCount": "{count} of your finished books in this period don't have a page count. Add them for a more accurate total.",
     "warningWithCount_plural": "{count} of your finished books in this period don't have a page count. Add them for a more accurate total.",
     "empty": "No books finished in this period yet."
+  },
+  "share": {
+    "title": "Share your shelf",
+    "description": "Mint a link anyone can open, even without an account.",
+    "create": "Create share link",
+    "creating": "Creating…",
+    "rotate": "Rotate link",
+    "rotating": "Rotating…",
+    "disable": "Disable sharing",
+    "disabling": "Disabling…",
+    "enabledNotice": "Anyone with this link can view your shelf. Rotate it to invalidate.",
+    "copyLink": "Copy link",
+    "copied": "Copied!",
+    "linkLabel": "Public link"
+  },
+  "publicShelf": {
+    "title": "@{username}'s shelf",
+    "subtitle": "{count} book",
+    "subtitle_plural": "{count} books",
+    "signUpPrompt": "Track your own reading at The Reading Place.",
+    "signUpCta": "Get started free",
+    "empty": "This shelf is empty for now.",
+    "sectionCount": "{count} book",
+    "sectionCount_plural": "{count} books",
+    "searchPlaceholder": "Find by title or author",
+    "searchLabel": "Find a book on this shelf",
+    "collapseSectionAria": "Collapse {status} section",
+    "expandSectionAria": "Expand {status} section",
+    "noMatches": "No books match your search."
   }
 }
