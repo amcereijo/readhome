@@ -324,7 +324,9 @@
     "enabledNotice": "Cualquiera con este enlace puede ver tu estantería. Rótalo para invalidarlo.",
     "copyLink": "Copiar enlace",
     "copied": "¡Copiado!",
-    "linkLabel": "Enlace público"
+    "linkLabel": "Enlace público",
+    "buttonLabel": "Compartir",
+    "buttonTooltip": "Abre el panel para compartir para crear, rotar o desactivar el enlace público"
   },
   "publicShelf": {
     "title": "Estantería de @{username}",

@@ -42,11 +42,18 @@ export default async function HomePage({
           <LinkButton href="/books/import" variant="secondary">
             {t("shelf.import")}
           </LinkButton>
+          <LinkButton
+            href="#share-shelf"
+            variant="secondary"
+            title={t("share.buttonTooltip")}
+          >
+            {t("share.buttonLabel")}
+          </LinkButton>
           <LinkButton href="/books/new">{t("shelf.addBook")}</LinkButton>
         </div>
       </div>
 
-      <div className="mb-6">
+      <div id="share-shelf" className="mb-6">
         <ShareShelfPanel
           enabled={user.publicShelfEnabled}
           token={user.publicShelfToken}

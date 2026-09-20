@@ -125,14 +125,18 @@ export function LinkButton({
   children,
   variant = "primary",
   className,
+  title,
+  "aria-label": ariaLabel,
 }: {
   href: string;
   children: ReactNode;
   variant?: "primary" | "secondary" | "danger" | "ghost";
   className?: string;
+  title?: string;
+  "aria-label"?: string;
 }) {
   return (
-    <Link href={href} className={buttonClasses(variant, className)}>
+    <Link href={href} className={buttonClasses(variant, className)} title={title} aria-label={ariaLabel}>
       {children}
     </Link>
   );

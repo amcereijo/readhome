@@ -324,7 +324,9 @@
     "enabledNotice": "Anyone with this link can view your shelf. Rotate it to invalidate.",
     "copyLink": "Copy link",
     "copied": "Copied!",
-    "linkLabel": "Public link"
+    "linkLabel": "Public link",
+    "buttonLabel": "Share",
+    "buttonTooltip": "Open the share panel to mint, rotate, or disable the public link"
   },
   "publicShelf": {
     "title": "@{username}'s shelf",
