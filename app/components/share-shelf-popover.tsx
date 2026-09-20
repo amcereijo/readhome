@@ -56,7 +56,7 @@ export function ShareShelfPopover({ enabled, token, dictionary }: Props) {
             if (e.target === e.currentTarget) setOpen(false);
           }}
         >
-          <div className="w-full max-w-md">
+          <div className="w-full max-w-xl">
             <ShareShelfPanel enabled={enabled} token={token} dictionary={dictionary} />
           </div>
         </div>
