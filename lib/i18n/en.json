@@ -326,7 +326,8 @@
     "copied": "Copied!",
     "linkLabel": "Public link",
     "buttonLabel": "Share",
-    "buttonTooltip": "Open the share panel to mint, rotate, or disable the public link"
+    "buttonTooltip": "Open the share panel to mint, rotate, or disable the public link",
+    "indicatorLabel": "Sharing is on"
   },
   "publicShelf": {
     "title": "@{username}'s shelf",

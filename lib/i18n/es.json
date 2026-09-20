@@ -326,7 +326,8 @@
     "copied": "¡Copiado!",
     "linkLabel": "Enlace público",
     "buttonLabel": "Compartir",
-    "buttonTooltip": "Abre el panel para compartir para crear, rotar o desactivar el enlace público"
+    "buttonTooltip": "Abre el panel para compartir para crear, rotar o desactivar el enlace público",
+    "indicatorLabel": "Compartir está activo"
   },
   "publicShelf": {
     "title": "Estantería de @{username}",

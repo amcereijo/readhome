@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { BookList } from "@/app/components/book-list";
 import { LandingPage } from "@/app/components/landing-page";
 import { ShelfNav } from "@/app/components/shelf-nav";
-import { ShareShelfPanel } from "@/app/components/share-shelf-panel";
+import { ShareShelfPopover } from "@/app/components/share-shelf-popover";
 import { LinkButton, PageSubtitle, PageTitle } from "@/app/components/ui";
 import { requireAppUser } from "@/lib/auth";
 import { countBooksByStatus, listBooks } from "@/lib/books";
@@ -42,23 +42,13 @@ export default async function HomePage({
           <LinkButton href="/books/import" variant="secondary">
             {t("shelf.import")}
           </LinkButton>
-          <LinkButton
-            href="#share-shelf"
-            variant="secondary"
-            title={t("share.buttonTooltip")}
-          >
-            {t("share.buttonLabel")}
-          </LinkButton>
+          <ShareShelfPopover
+            enabled={user.publicShelfEnabled}
+            token={user.publicShelfToken}
+            dictionary={dictionary}
+          />
           <LinkButton href="/books/new">{t("shelf.addBook")}</LinkButton>
         </div>
-      </div>
-
-      <div id="share-shelf" className="mb-6">
-        <ShareShelfPanel
-          enabled={user.publicShelfEnabled}
-          token={user.publicShelfToken}
-          dictionary={dictionary}
-        />
       </div>
 
       <ShelfNav
