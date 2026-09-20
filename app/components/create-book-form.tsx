@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { createBookAction } from "@/app/actions/books";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/locales";
@@ -10,11 +10,28 @@ import { BookForm } from "./book-form";
 import { BookSearch } from "./book-search";
 import { BarcodeScannerButton } from "./barcode-scanner";
 
-export function CreateBookForm({ dictionary, locale }: { dictionary: Dictionary; locale: Locale }) {
-  const [state, action] = useActionState(createBookAction, { error: null as string | null });
+type Props = {
+  dictionary: Dictionary;
+  locale: Locale;
+  onSuccess?: () => void;
+};
+
+export function CreateBookForm({ dictionary, locale, onSuccess }: Props) {
+  const [state, action] = useActionState(createBookAction, {
+    error: null as string | null,
+    success: false as boolean,
+  });
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [metadataJson, setMetadataJson] = useState("");
+  const previousSuccess = useRef(false);
+
+  useEffect(() => {
+    if (state?.success && !previousSuccess.current) {
+      previousSuccess.current = true;
+      onSuccess?.();
+    }
+  }, [state?.success, onSuccess]);
 
   function handleSelect(volume: NormalizedVolume) {
     setTitle(volume.title);
@@ -30,7 +47,7 @@ export function CreateBookForm({ dictionary, locale }: { dictionary: Dictionary;
         action={action}
         error={state?.error ? translateError(dictionary, state.error) : null}
         submitLabel={dictionary.shelf.addBook}
-        cancelHref="/"
+        cancelHref={null}
         dictionary={dictionary}
         locale={locale}
         titleValue={title}

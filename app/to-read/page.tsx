@@ -1,6 +1,7 @@
+import { AddBookButton } from "@/app/components/add-book-button";
 import { BookList } from "@/app/components/book-list";
 import { ShelfNav } from "@/app/components/shelf-nav";
-import { LinkButton, PageTitle } from "@/app/components/ui";
+import { PageTitle } from "@/app/components/ui";
 import { requireAppUser } from "@/lib/auth";
 import { countBooksByStatus, listBooks } from "@/lib/books";
 import { listAcceptedFriends } from "@/lib/friendships";
@@ -18,7 +19,7 @@ export default async function ToReadPage() {
     <div>
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <PageTitle>{t("status.to-read")}</PageTitle>
-        <LinkButton href="/books/new">{t("shelf.addBook")}</LinkButton>
+        <AddBookButton dictionary={dictionary} locale={locale} />
       </div>
       <ShelfNav
         basePath=""

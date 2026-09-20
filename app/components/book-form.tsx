@@ -21,7 +21,7 @@ type Props = {
   book?: BookRecord;
   error?: string | null;
   submitLabel: string;
-  cancelHref?: string;
+  cancelHref?: string | null;
   dictionary: Dictionary;
   locale: Locale;
   titleValue?: string;

@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
+import { AddBookButton } from "@/app/components/add-book-button";
 import { BookList } from "@/app/components/book-list";
 import { LandingPage } from "@/app/components/landing-page";
 import { ShelfNav } from "@/app/components/shelf-nav";
@@ -47,7 +48,7 @@ export default async function HomePage({
             token={user.publicShelfToken}
             dictionary={dictionary}
           />
-          <LinkButton href="/books/new">{t("shelf.addBook")}</LinkButton>
+          <AddBookButton dictionary={dictionary} locale={locale} />
         </div>
       </div>
 

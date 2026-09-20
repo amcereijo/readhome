@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { requireAppUser } from "@/lib/auth";
 import { copyBook, createBook, deleteBook, getBook, updateBook, computeNextNote } from "@/lib/books";
 import { canReadShelf } from "@/lib/friendships";
@@ -17,15 +16,15 @@ function revalidateShelves() {
 }
 
 export async function createBookAction(
-  _prev: { error: string | null },
+  _prev: { error: string | null; success: boolean },
   formData: FormData,
-) {
+): Promise<{ error: string | null; success: boolean }> {
   const user = await requireAppUser();
   const title = readTitle(formData);
   const status = readStatus(formData);
 
-  if (!title) return { error: "errors.titleRequired" };
-  if (!status) return { error: "errors.statusRequired" };
+  if (!title) return { error: "errors.titleRequired", success: false };
+  if (!status) return { error: "errors.statusRequired", success: false };
 
   await createBook({
     ownerId: user.id,
@@ -41,7 +40,7 @@ export async function createBookAction(
   });
 
   revalidateShelves();
-  redirect(status === "to-read" ? "/to-read" : `/${status}`);
+  return { error: null, success: true };
 }
 
 export async function updateBookAction(

@@ -65,7 +65,7 @@
       "name": "Add Book",
       "short_name": "Add Book",
       "description": "Add a new book to your shelf",
-      "url": "/books/new",
+      "url": "/",
       "icons": [{ "src": "/favicon-96x96.png", "sizes": "96x96" }]
     }
   ]
