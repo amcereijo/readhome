@@ -78,6 +78,7 @@
     "changeStatusAria": "Change status",
     "recommendAria": "Recommend book to a friend",
     "addToShelfAria": "Add to my shelf",
+    "closeAria": "Close details",
     "statusAllAria": "All books",
     "statusToReadAria": "To read, {count} book",
     "statusToReadAria_plural": "To read, {count} books",

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormStatus } from "react-dom";
-import { ChevronDown, ChevronUp, LayoutGrid, List, Pencil, Trash2 } from "lucide-react";
+import { ChevronDown, ChevronUp, LayoutGrid, List, Pencil, Trash2, X } from "lucide-react";
 import { deleteBookAction } from "@/app/actions/books";
 import { type AppUser, type BookRecord } from "@/lib/types";
 import { type Dictionary, createT } from "@/lib/i18n/dictionaries";
@@ -582,6 +582,14 @@ export function BookList({
                   })()}
                 </div>
               </div>
+              <IconButton
+                variant="ghost"
+                onClick={() => setModalBookId(null)}
+                aria-label={dictionary.shelf.closeAria}
+                title={dictionary.shelf.closeAria}
+                icon={<X className="h-5 w-5" />}
+                className="-mr-2 -mt-2 shrink-0"
+              />
             </div>
 
             <div className="overflow-y-auto border-t border-zinc-100 pt-4 text-sm">

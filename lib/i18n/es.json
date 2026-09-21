@@ -78,6 +78,7 @@
     "changeStatusAria": "Cambiar estado",
     "recommendAria": "Recomendar libro a un amigo",
     "addToShelfAria": "Añadir a mi estantería",
+    "closeAria": "Cerrar detalles",
     "statusAllAria": "Todos los libros",
     "statusToReadAria": "Por leer, {count} libro",
     "statusToReadAria_plural": "Por leer, {count} libros",
