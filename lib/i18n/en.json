@@ -26,7 +26,76 @@
     "featureImport": "Import",
     "featureImportDescription": "Bring your Goodreads library over in just a few clicks.",
     "getStarted": "Get started free",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "hero": {
+      "eyebrow": "Track. Share. Discover.",
+      "title": "Add a book in seconds — by title or by barcode.",
+      "subtitle": "Search millions of titles, point your phone at any cover, and your shelf fills itself. Connect with friends, share recommendations, and see your reading add up.",
+      "primaryCta": "Get started free",
+      "secondaryCta": "Sign in",
+      "socialProof": "Free, bilingual, and yours forever.",
+      "speedChip": "2-second add"
+    },
+    "features": {
+      "add-book": {
+        "headline": "Add a book in seconds",
+        "body": "Open the Add dialog and choose how you want to find your book: type a few letters of the title to search millions of Google Books entries, or scan the barcode on the back cover with your phone. Metadata, cover, and author fill in automatically."
+      },
+      "barcode-scan": {
+        "headline": "Add a book in seconds",
+        "body": "Open the Add dialog and choose how you want to find your book: type a few letters of the title to search millions of Google Books entries, or scan the barcode on the back cover with your phone. Metadata, cover, and author fill in automatically."
+      },
+      "search": {
+        "headline": "Add a book in seconds",
+        "body": "Open the Add dialog and choose how you want to find your book: type a few letters of the title to search millions of Google Books entries, or scan the barcode on the back cover with your phone. Metadata, cover, and author fill in automatically."
+      },
+      "shelf": {
+        "headline": "Your shelf, your way",
+        "body": "Switch between list and grid views. Filter by status, search by title or author, and sort by date added or finished."
+      },
+      "statuses": {
+        "headline": "Track what you are reading",
+        "body": "Move books between to-read, reading, read, and abandoned. Start and finish dates are stamped for you."
+      },
+      "statistics": {
+        "headline": "Watch your reading add up",
+        "body": "Pick a year and a month. See how many books you finished and how many pages you turned."
+      },
+      "public-share": {
+        "headline": "Share a public shelf",
+        "body": "Mint a private link. Anyone with the link can browse your shelf read-only — perfect for a blog footer or a profile bio."
+      },
+      "friends": {
+        "headline": "Find friends by username",
+        "body": "Send an invite, accept in one click. Browse every accepted friend's shelf and see what they are reading."
+      },
+      "friend-shelf": {
+        "headline": "Add a friend's book to your shelf",
+        "body": "Found something good on a friend's shelf? Copy it to yours with a status of your choice in two clicks."
+      },
+      "recommendations": {
+        "headline": "Send book recommendations",
+        "body": "Recommend a book with a personal note. Friends accept, dismiss, or reply — and your shelf gets the recommendation."
+      },
+      "goodreads-import": {
+        "headline": "Bring your Goodreads library",
+        "body": "Drag your Goodreads CSV export into the importer. Books, statuses, dates, and notes are mapped automatically."
+      },
+      "language": {
+        "headline": "English and Spanish",
+        "body": "Switch the whole app between English and Spanish with one click. Dates, labels, and accessibility text follow."
+      },
+      "account": {
+        "headline": "Your account, your username",
+        "body": "Sign in with Clerk and claim a unique @username. It becomes your shelf URL and your invite handle."
+      }
+    },
+    "footer": {
+      "title": "Your next favourite book is one scan away.",
+      "body": "Join readers who use The Reading Place to capture every book, share every recommendation, and watch their reading add up.",
+      "primaryCta": "Start your shelf",
+      "secondaryCta": "I already have an account"
+    }
   },
   "shelf": {
     "yourShelf": "Your shelf",

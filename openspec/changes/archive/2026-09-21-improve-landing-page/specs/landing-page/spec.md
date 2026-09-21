@@ -1,8 +1,4 @@
-## Purpose
-
-Provides a public entry point for visitors who are not signed in, explaining the application and inviting them to sign up or sign in.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Public landing page on home route
 The system SHALL display a public landing page when a visitor opens the home route (`/`) without being signed in. The landing page SHALL present every user-facing capability described in the project's specs as its own labeled section, alongside a hero, and SHALL source all visible copy from the i18n dictionaries.
@@ -21,6 +17,8 @@ The system SHALL NOT display any user's books, shelves, or personal information 
 - **WHEN** a signed-out visitor views the landing page
 - **THEN** the system does not query or display any book records
 - **AND** any screenshot on the landing page is sourced from `public/landing/`, not from a live user query
+
+## ADDED Requirements
 
 ### Requirement: Every user-facing feature is represented
 The landing page SHALL include a section for each of the following user-facing capabilities: book search, barcode scanning, adding a book, shelf organization, status changes, reading statistics, public shelf sharing, friend invites and connections, friend shelf browsing, recommendations (sent/received), Goodreads import, language switching, and account / username management.

@@ -1,0 +1,115 @@
+{
+  "generatedAt": "2026-09-21T18:33:09.801Z",
+  "assets": [
+    {
+      "feature": "hero",
+      "route": "/",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "type": "image",
+      "src": "/landing/feature-hero.png",
+      "alt": "Your personal reading shelf, in grid view"
+    },
+    {
+      "feature": "shelf",
+      "route": "/",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "type": "image",
+      "src": "/landing/feature-shelf.png",
+      "alt": "The personal book shelf"
+    },
+    {
+      "feature": "add-book",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "type": "image",
+      "src": "/landing/feature-add-book.png",
+      "alt": "Add a book in seconds — search by title or scan a barcode"
+    },
+    {
+      "feature": "statistics",
+      "route": "/stats",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "type": "image",
+      "src": "/landing/feature-statistics.png",
+      "alt": "Reading statistics"
+    },
+    {
+      "feature": "statuses",
+      "route": "/",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "type": "image",
+      "src": "/landing/feature-statuses.png",
+      "alt": "Change a book's status — start and finish dates are stamped for you"
+    },
+    {
+      "feature": "friends",
+      "route": "/friends",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "type": "image",
+      "src": "/landing/feature-friends.png",
+      "alt": "Friends management"
+    },
+    {
+      "feature": "recommendations",
+      "route": "/recommendations",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "type": "image",
+      "src": "/landing/feature-recommendations.png",
+      "alt": "Book recommendations"
+    },
+    {
+      "feature": "goodreads-import",
+      "route": "/books/import",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "type": "image",
+      "src": "/landing/feature-goodreads-import.png",
+      "alt": "Import your Goodreads library via CSV"
+    },
+    {
+      "feature": "friend-shelf",
+      "route": "/u/fixturefriend",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "type": "image",
+      "src": "/landing/feature-friend-shelf.png",
+      "alt": "Browsing a friend's shelf"
+    },
+    {
+      "feature": "public-share",
+      "route": "/share/landing-fixture-token-aab916ad-1071-4a8a-8c86-fe38e86d412e",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "type": "image",
+      "src": "/landing/feature-public-share.png",
+      "alt": "Public shelf share preview"
+    }
+  ]
+}

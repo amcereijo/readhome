@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { AddBookButton } from "@/app/components/add-book-button";
 import { BookList } from "@/app/components/book-list";
-import { LandingPage } from "@/app/components/landing-page";
+import { LandingPage } from "@/app/components/landing";
 import { ShelfNav } from "@/app/components/shelf-nav";
 import { ShareShelfPopover } from "@/app/components/share-shelf-popover";
 import { LinkButton, PageSubtitle, PageTitle } from "@/app/components/ui";
@@ -11,12 +11,25 @@ import { listAcceptedFriends } from "@/lib/friendships";
 import { isBookStatus } from "@/lib/types";
 import { getDictionaryForLocale } from "@/lib/i18n/server";
 
+function captureModeActive(): boolean {
+  return (
+    process.env.NODE_ENV !== "production" && process.env.LANDING_CAPTURE === "1"
+  );
+}
+
 export default async function HomePage({
   searchParams,
 }: {
-  searchParams: Promise<{ status?: string }>;
+  searchParams: Promise<{ status?: string; captureView?: string }>;
 }) {
-  const { userId } = await auth();
+  const params = await searchParams;
+  const forceLanding =
+    captureModeActive() && params.captureView === "landing";
+  const { userId } = forceLanding
+    ? { userId: null }
+    : captureModeActive()
+    ? { userId: "fixture" }
+    : await auth();
   const { dictionary, locale, t } = await getDictionaryForLocale();
 
   if (!userId) {
@@ -24,7 +37,6 @@ export default async function HomePage({
   }
 
   const user = await requireAppUser();
-  const params = await searchParams;
   const status = params.status && isBookStatus(params.status) ? params.status : undefined;
   const [books, counts, friends] = await Promise.all([
     listBooks(user.id, status),

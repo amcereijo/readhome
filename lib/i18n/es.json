@@ -26,7 +26,76 @@
     "featureImport": "Importa",
     "featureImportDescription": "Trae tu biblioteca de Goodreads en pocos clics.",
     "getStarted": "Empieza gratis",
-    "signIn": "Iniciar sesión"
+    "signIn": "Iniciar sesión",
+    "hero": {
+      "eyebrow": "Sigue. Comparte. Descubre.",
+      "title": "Añade un libro en segundos — por título o por código de barras.",
+      "subtitle": "Busca entre millones de títulos, apunta con tu móvil a cualquier portada y tu estantería se llena sola. Conecta con amigos, comparte recomendaciones y mira cómo se acumulan tus lecturas.",
+      "primaryCta": "Empieza gratis",
+      "secondaryCta": "Iniciar sesión",
+      "socialProof": "Gratis, bilingüe y tuyo para siempre.",
+      "speedChip": "Añadir en 2 s"
+    },
+    "features": {
+      "add-book": {
+        "headline": "Añade un libro en segundos",
+        "body": "Abre el diálogo Añadir y elige cómo encontrar tu libro: escribe unas letras del título para buscar entre millones de entradas de Google Books, o escanea el código de barras de la contraportada con tu móvil. Los metadatos, la portada y el autor se rellenan solos."
+      },
+      "barcode-scan": {
+        "headline": "Añade un libro en segundos",
+        "body": "Abre el diálogo Añadir y elige cómo encontrar tu libro: escribe unas letras del título para buscar entre millones de entradas de Google Books, o escanea el código de barras de la contraportada con tu móvil. Los metadatos, la portada y el autor se rellenan solos."
+      },
+      "search": {
+        "headline": "Añade un libro en segundos",
+        "body": "Abre el diálogo Añadir y elige cómo encontrar tu libro: escribe unas letras del título para buscar entre millones de entradas de Google Books, o escanea el código de barras de la contraportada con tu móvil. Los metadatos, la portada y el autor se rellenan solos."
+      },
+      "shelf": {
+        "headline": "Tu estantería, a tu manera",
+        "body": "Alterna entre vista de lista y cuadrícula. Filtra por estado, busca por título o autor y ordena por fecha de alta o de finalización."
+      },
+      "statuses": {
+        "headline": "Sigue lo que estás leyendo",
+        "body": "Mueve libros entre pendiente, leyendo, leído y abandonado. Las fechas de inicio y fin se registran solas."
+      },
+      "statistics": {
+        "headline": "Mira cómo suman tus lecturas",
+        "body": "Elige un año y un mes. Descubre cuántos libros terminaste y cuántas páginas pasaste."
+      },
+      "public-share": {
+        "headline": "Comparte una estantería pública",
+        "body": "Crea un enlace privado. Cualquiera con el enlace puede ver tu estantería en solo lectura, perfecta para un pie de blog o tu bio."
+      },
+      "friends": {
+        "headline": "Encuentra amigos por nombre de usuario",
+        "body": "Envía una invitación y acepta con un clic. Explora la estantería de cada amigo aceptado y mira qué está leyendo."
+      },
+      "friend-shelf": {
+        "headline": "Copia a tu estantería un libro de un amigo",
+        "body": "¿Encontraste algo bueno en la estantería de un amigo? Cópialo a la tuya con el estado que elijas en dos clics."
+      },
+      "recommendations": {
+        "headline": "Envía recomendaciones de libros",
+        "body": "Recomienda un libro con una nota personal. Tus amigos aceptan, descartan o responden, y tu estantería recibe la recomendación."
+      },
+      "goodreads-import": {
+        "headline": "Trae tu biblioteca de Goodreads",
+        "body": "Arrastra tu exportación CSV de Goodreads al importador. Los libros, estados, fechas y notas se mapean automáticamente."
+      },
+      "language": {
+        "headline": "Inglés y español",
+        "body": "Cambia toda la aplicación entre inglés y español con un clic. Fechas, etiquetas y textos de accesibilidad te acompañan."
+      },
+      "account": {
+        "headline": "Tu cuenta, tu nombre de usuario",
+        "body": "Inicia sesión con Clerk y reclama un @usuario único. Se convierte en la URL de tu estantería y tu identificador de invitaciones."
+      }
+    },
+    "footer": {
+      "title": "Tu próximo libro favorito está a un escaneo.",
+      "body": "Únete a lectores que usan The Reading Place para capturar cada libro, compartir cada recomendación y ver cómo se acumulan sus lecturas.",
+      "primaryCta": "Empieza tu estantería",
+      "secondaryCta": "Ya tengo cuenta"
+    }
   },
   "shelf": {
     "yourShelf": "Tu estantería",

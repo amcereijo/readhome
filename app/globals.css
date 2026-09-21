@@ -32,3 +32,54 @@ body {
   border-right-color: transparent;
   animation: app-spin 0.75s linear infinite;
 }
+
+@keyframes landing-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes landing-drift-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(12px, -10px, 0) scale(1.04);
+  }
+}
+
+@keyframes landing-drift-fast {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-10px, 14px, 0) scale(1.06);
+  }
+}
+
+.landing-float {
+  animation: landing-float 5s ease-in-out infinite;
+}
+
+.landing-drift-slow {
+  animation: landing-drift-slow 9s ease-in-out infinite;
+}
+
+.landing-drift-fast {
+  animation: landing-drift-fast 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-float,
+  .landing-drift-slow,
+  .landing-drift-fast {
+    animation: none;
+  }
+}
+

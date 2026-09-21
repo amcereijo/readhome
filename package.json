@@ -12,7 +12,9 @@
     "db:smoke": "npx tsx scripts/smoke.ts",
     "db:smoke:review-prompt": "npx tsx scripts/smoke-review-prompt.ts",
     "db:backfill-google-books": "npx tsx scripts/backfill-google-books.ts",
-    "db:migrate-isbn": "npx tsx scripts/migrate-isbn-metadata.ts"
+    "db:migrate-isbn": "npx tsx scripts/migrate-isbn-metadata.ts",
+    "landing.capture": "node scripts/capture-landing-screenshots.mjs",
+    "landing.assets": "node scripts/check-landing-assets.mjs"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.7.6",
@@ -25,6 +27,7 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/papaparse": "^5.5.2",
