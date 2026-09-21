@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "The Reading Place",
+    "title": "Read Home",
     "description": "Una estantería personal que es tuya."
   },
   "nav": {
@@ -18,7 +18,7 @@
   "landing": {
     "tagline": "Tu compañero de lectura personal",
     "title": "Seguimiento, compartir y descubrir tu próxima gran lectura",
-    "subtitle": "The Reading Place te ayuda a organizar tu estantería, mantenerte al día con lo que estás leyendo y compartir recomendaciones con amigos.",
+    "subtitle": "Read Home te ayuda a organizar tu estantería, mantenerte al día con lo que estás leyendo y compartir recomendaciones con amigos.",
     "featureOrganize": "Organiza",
     "featureOrganizeDescription": "Registra libros, estados, formatos, fechas y notas en un solo lugar.",
     "featureConnect": "Conecta",
@@ -92,7 +92,7 @@
     },
     "footer": {
       "title": "Tu próximo libro favorito está a un escaneo.",
-      "body": "Únete a lectores que usan The Reading Place para capturar cada libro, compartir cada recomendación y ver cómo se acumulan sus lecturas.",
+      "body": "Únete a lectores que usan Read Home para capturar cada libro, compartir cada recomendación y ver cómo se acumulan sus lecturas.",
       "primaryCta": "Empieza tu estantería",
       "secondaryCta": "Ya tengo cuenta"
     }
@@ -403,7 +403,7 @@
     "title": "Estantería de @{username}",
     "subtitle": "{count} libro",
     "subtitle_plural": "{count} libros",
-    "signUpPrompt": "Registra tus propias lecturas en The Reading Place.",
+    "signUpPrompt": "Registra tus propias lecturas en Read Home.",
     "signUpCta": "Empieza gratis",
     "empty": "Esta estantería está vacía por ahora.",
     "sectionCount": "{count} libro",

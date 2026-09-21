@@ -1,6 +1,6 @@
 ## Purpose
 
-Provides Spanish and English language support for all user-facing text in The Reading Place, with a manual toggle and locale persistence via cookie.
+Provides Spanish and English language support for all user-facing text in Read Home, with a manual toggle and locale persistence via cookie.
 
 ## Requirements
 

@@ -1,6 +1,6 @@
 ## Purpose
 
-Enables users to import their reading history and book data from Goodreads CSV export files into The Reading Place, preserving book metadata, ratings, and reading dates.
+Enables users to import their reading history and book data from Goodreads CSV export files into Read Home, preserving book metadata, ratings, and reading dates.
 
 ## Requirements
 
@@ -17,7 +17,7 @@ The system SHALL accept CSV files in Goodreads export format and parse them into
 - **THEN** system displays an error message in the active locale indicating the file format is invalid
 
 ### Requirement: Data field mapping
-The system SHALL map Goodreads CSV columns to The Reading Place's book schema fields, including storing extra metadata in a flexible JSON field. The "Author" CSV column SHALL be mapped to the book's `author` property, not to `metadata`.
+The system SHALL map Goodreads CSV columns to Read Home's book schema fields, including storing extra metadata in a flexible JSON field. The "Author" CSV column SHALL be mapped to the book's `author` property, not to `metadata`.
 
 #### Scenario: Standard field mapping
 - **WHEN** CSV contains standard Goodreads columns (Book Id, Title, Author, My Rating, Date Read, etc.)

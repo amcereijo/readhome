@@ -1,6 +1,6 @@
 {
-  "name": "The Reading Place",
-  "short_name": "Reading Place",
+  "name": "Read Home",
+  "short_name": "Read Home",
   "description": "A personal book shelf you own. Track, share, and discover your next great read.",
   "start_url": "/",
   "display": "standalone",
