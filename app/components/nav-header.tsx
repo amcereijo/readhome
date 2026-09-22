@@ -37,7 +37,7 @@ export async function NavHeader({
         </div>
         <Link
           href="/"
-          className="pointer-events-auto min-w-0 flex-1 text-center text-base font-bold tracking-tight text-teal-800 hover:text-teal-900 sm:absolute sm:left-1/2 sm:flex-none sm:-translate-x-1/2 sm:text-lg"
+          className="pointer-events-auto min-w-0 flex-1 text-center text-2xl font-bold tracking-tight text-teal-800 hover:text-teal-900 sm:absolute sm:left-1/2 sm:flex-none sm:-translate-x-1/2 sm:text-3xl"
         >
           <span className="block truncate">{dictionary.meta.title}</span>
         </Link>
