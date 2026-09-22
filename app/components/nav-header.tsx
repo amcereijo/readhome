@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Show, UserButton } from "@clerk/nextjs";
 import { getDictionary } from "@/lib/i18n/dictionaries";
@@ -37,8 +38,16 @@ export async function NavHeader({
         </div>
         <Link
           href="/"
-          className="pointer-events-auto min-w-0 flex-1 text-center text-2xl font-bold tracking-tight text-teal-800 hover:text-teal-900 sm:absolute sm:left-1/2 sm:flex-none sm:-translate-x-1/2 sm:text-3xl"
+          className="pointer-events-auto flex min-w-0 flex-1 items-center justify-center gap-2 text-2xl font-bold tracking-tight text-teal-800 hover:text-teal-900 sm:absolute sm:left-1/2 sm:flex-none sm:-translate-x-1/2 sm:text-3xl"
         >
+          <Image
+            src="/logo.svg"
+            alt=""
+            width={32}
+            height={32}
+            className="h-7 w-7 shrink-0 sm:h-8 sm:w-8"
+            priority
+          />
           <span className="block truncate">{dictionary.meta.title}</span>
         </Link>
         <div className="flex shrink-0 items-center gap-3 sm:ml-auto">

@@ -29,9 +29,9 @@ export async function generateMetadata(): Promise<Metadata> {
     title: dictionary.meta.title,
     description: dictionary.meta.description,
     icons: {
-      icon: "/favicon.svg",
+      icon: "/icon.svg",
       shortcut: "/favicon.ico",
-      apple: "/favicon.svg",
+      apple: "/icon.svg",
     },
     manifest: "/manifest.json",
     themeColor: "#0f766e",
