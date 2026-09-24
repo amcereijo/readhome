@@ -125,6 +125,8 @@
     "abandonedAt": "Abandoned",
     "note": "Note",
     "metadata": "Metadata",
+    "metadataDescription": "Description",
+    "metadataCategories": "Categories",
     "edit": "Edit",
     "delete": "Delete",
     "deleting": "Deleting…",

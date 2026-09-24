@@ -124,6 +124,44 @@ function MetadataValue({ value }: { value: string }) {
   return <span className="whitespace-pre-wrap break-words">{value}</span>;
 }
 
+// Keys that are noisy internals or duplicates of values we already render
+// elsewhere (cover URL feeds the cover thumbnail; isbn10/isbn13 duplicate isbn).
+const HIDDEN_METADATA_KEYS = new Set(["googleBooksId", "coverUrl", "isbn10", "isbn13"]);
+
+// Friendly labels for the remaining metadata keys. Falls back to the raw key
+// when no mapping is found so existing keys still render.
+const METADATA_KEY_LABELS: Record<string, string> = {
+  isbn: "ISBN",
+  publisher: "Publisher",
+  pageCount: "Page count",
+  publishedDate: "Published date",
+  averageRating: "Average rating",
+};
+
+function labelForMetadataKey(key: string): string {
+  return METADATA_KEY_LABELS[key] ?? key;
+}
+
+function parseCategoriesValue(rawValue: unknown): string[] {
+  if (Array.isArray(rawValue)) {
+    return rawValue.filter((item): item is string => typeof item === "string" && item.trim() !== "");
+  }
+  if (typeof rawValue !== "string" || rawValue.trim() === "") return [];
+  const trimmed = rawValue.trim();
+  try {
+    const parsed = JSON.parse(trimmed);
+    if (Array.isArray(parsed)) {
+      return parsed.filter((item): item is string => typeof item === "string" && item.trim() !== "");
+    }
+  } catch {
+    // Not valid JSON — fall back to comma split.
+  }
+  return trimmed
+    .split(",")
+    .map((item) => item.trim())
+    .filter((item) => item !== "");
+}
+
 function lastMeaningfulDate(
   book: BookRecord,
   formatDate: (value: string | null | undefined) => string | null,
@@ -218,44 +256,92 @@ function BookDetails({
         </div>
       ) : null}
 
-      {Object.keys(book.metadata).length > 0 && !publicView ? (
-        <div>
-          <dt className="mb-2 inline-block rounded-md bg-teal-50 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-teal-800">
-            {dictionary.shelf.metadata}
-          </dt>
-          <dd className="overflow-hidden rounded-lg border border-zinc-200 bg-white">
-            <dl>
-              {Object.entries(book.metadata).map(([key, rawValue], index) => {
-                const value = formatMetadataValue(rawValue);
-                const compact = isCompactMetadataValue(value);
+      {(() => {
+        const visibleEntries = Object.entries(book.metadata).filter(
+          ([key]) => !HIDDEN_METADATA_KEYS.has(key),
+        );
+        if (visibleEntries.length === 0 || publicView) return null;
+
+        const descriptionEntry = visibleEntries.find(([key]) => key === "description");
+        const categoriesEntry = visibleEntries.find(([key]) => key === "categories");
+        const otherEntries = visibleEntries.filter(
+          ([key]) => key !== "description" && key !== "categories",
+        );
+
+        return (
+          <div className="space-y-3">
+            <p className="mb-2 inline-block rounded-md bg-teal-50 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-teal-800">
+              {dictionary.shelf.metadata}
+            </p>
+            {descriptionEntry ? (
+              <div className="rounded-lg border border-zinc-200 bg-white px-3 py-2.5">
+                <p className="mb-1 text-xs font-semibold text-zinc-500">
+                  {dictionary.shelf.metadataDescription}
+                </p>
+                <p className="whitespace-pre-wrap break-words text-sm text-zinc-900">
+                  {formatMetadataValue(descriptionEntry[1])}
+                </p>
+              </div>
+            ) : null}
+
+            {categoriesEntry ? (
+              (() => {
+                const categories = parseCategoriesValue(categoriesEntry[1]);
+                if (categories.length === 0) return null;
                 return (
-                  <div
-                    key={key}
-                    className={cn(
-                      "px-3 py-2.5",
-                      index > 0 && "border-t border-zinc-100",
-                      compact && "flex items-baseline gap-3",
-                    )}
-                  >
-                    <dt
-                      className={cn(
-                        "text-xs font-semibold text-zinc-500",
-                        compact ? "shrink-0" : "mb-1",
-                      )}
-                      title={key}
-                    >
-                      {key}
-                    </dt>
-                    <dd className="min-w-0 text-sm text-zinc-900">
-                      <MetadataValue value={value} />
-                    </dd>
+                  <div>
+                    <p className="mb-1.5 text-xs font-semibold text-zinc-500">
+                      {dictionary.shelf.metadataCategories}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {categories.map((category) => (
+                        <span
+                          key={category}
+                          className="rounded-md bg-teal-50 px-2 py-0.5 text-xs font-medium text-teal-800"
+                        >
+                          {category}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 );
-              })}
-            </dl>
-          </dd>
-        </div>
-      ) : null}
+              })()
+            ) : null}
+
+            {otherEntries.length > 0 ? (
+              <div className="overflow-hidden rounded-lg border border-zinc-200 bg-white">
+                {otherEntries.map(([key, rawValue], index) => {
+                  const value = formatMetadataValue(rawValue);
+                  const compact = isCompactMetadataValue(value);
+                  return (
+                    <div
+                      key={key}
+                      className={cn(
+                        "px-3 py-2.5",
+                        index > 0 && "border-t border-zinc-100",
+                        compact && "flex items-baseline gap-3",
+                      )}
+                    >
+                      <p
+                        className={cn(
+                          "text-xs font-semibold text-zinc-500",
+                          compact ? "shrink-0" : "mb-1",
+                        )}
+                        title={key}
+                      >
+                        {labelForMetadataKey(key)}
+                      </p>
+                      <div className="min-w-0 text-sm text-zinc-900">
+                        <MetadataValue value={value} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
+          </div>
+        );
+      })()}
     </dl>
   );
 }
