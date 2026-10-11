@@ -11,6 +11,7 @@ import { listIncomingPending } from "@/lib/friendships";
 import { LocaleProvider } from "@/app/components/locale-provider";
 import { NavHeader } from "@/app/components/nav-header";
 import { SideNavDesktop } from "@/app/components/side-nav";
+import { ServiceWorkerRegister } from "@/app/components/service-worker-register";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,6 +85,7 @@ export default async function RootLayout({
             </div>
           </ClerkProvider>
         </LocaleProvider>
+        <ServiceWorkerRegister />
       </body>
     </html>
   );

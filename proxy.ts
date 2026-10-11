@@ -6,6 +6,9 @@ const isPublicRoute = createRouteMatcher([
   "/sign-up(.*)",
   "/invite(.*)",
   "/share(.*)",
+  // PWA manifest must be fetchable for anonymous sessions, otherwise the
+  // browser install prompt is suppressed on the public landing page.
+  "/manifest.json",
   // Clerk Frontend API proxy traffic must never be auth-gated — a 307 here
   // makes ClerkJS wipe otherwise-valid sessions.
   "/__clerk(.*)",
