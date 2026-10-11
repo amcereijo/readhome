@@ -50,7 +50,7 @@ export function StatisticsCards({
           <p className="text-sm text-zinc-500">{dictionary.statistics.empty}</p>
         </Card>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-3">
           <Card>
             <p className="text-sm font-medium text-zinc-500">
               {t("statistics.booksFinished", { count: stats.booksFinished })}
@@ -67,8 +67,27 @@ export function StatisticsCards({
               {formatNumber(stats.pagesRead, locale)}
             </p>
           </Card>
+          {stats.averageDaysToRead !== null ? (
+            <Card>
+              <p className="text-sm font-medium text-zinc-500">
+                {t("statistics.averageDaysToRead", { days: stats.averageDaysToRead })}
+              </p>
+              <p className="mt-2 text-3xl font-semibold tracking-tight text-zinc-900">
+                {formatNumber(stats.averageDaysToRead, locale)}
+              </p>
+              <p className="mt-3 text-xs text-zinc-500">
+                {dictionary.statistics.averageFootnote}
+              </p>
+            </Card>
+          ) : null}
         </div>
       )}
+
+      {stats.booksMissingStartDate > 0 ? (
+        <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          {t("statistics.missingStartDateWarning", { count: stats.booksMissingStartDate })}
+        </div>
+      ) : null}
 
       {stats.booksWithoutPageCount > 0 ? (
         <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">

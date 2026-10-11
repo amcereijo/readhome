@@ -380,6 +380,11 @@
     "booksFinished_plural": "{count} books finished",
     "pagesRead": "{count} page read",
     "pagesRead_plural": "{count} pages read",
+    "averageDaysToRead": "{days} day on average to read a book",
+    "averageDaysToRead_plural": "{days} days on average to read a book",
+    "averageFootnote": "Across the finished books that have both a start and a finish date in this period. Books missing a start date are excluded.",
+    "missingStartDateWarning": "{count} of your finished books in this period don't have a start date. Add it for a more representative average.",
+    "missingStartDateWarning_plural": "{count} of your finished books in this period don't have a start date. Add it for a more representative average.",
     "warningWithCount": "{count} of your finished books in this period don't have a page count. Add them for a more accurate total.",
     "warningWithCount_plural": "{count} of your finished books in this period don't have a page count. Add them for a more accurate total.",
     "empty": "No books finished in this period yet."

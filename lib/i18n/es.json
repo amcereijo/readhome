@@ -380,6 +380,11 @@
     "booksFinished_plural": "{count} libros terminados",
     "pagesRead": "{count} página leída",
     "pagesRead_plural": "{count} páginas leídas",
+    "averageDaysToRead": "{days} día en promedio para leer un libro",
+    "averageDaysToRead_plural": "{days} días en promedio para leer un libro",
+    "averageFootnote": "Calculado sobre los libros terminados en este periodo que tienen fecha de inicio y de fin. Los libros sin fecha de inicio no se incluyen.",
+    "missingStartDateWarning": "{count} de tus libros terminados en este periodo no tienen fecha de inicio. Añádela para un promedio más representativo.",
+    "missingStartDateWarning_plural": "{count} de tus libros terminados en este periodo no tienen fecha de inicio. Añádela para un promedio más representativo.",
     "warningWithCount": "{count} de tus libros terminados en este periodo no tienen un número de páginas. Añádelo para un total más exacto.",
     "warningWithCount_plural": "{count} de tus libros terminados en este periodo no tienen un número de páginas. Añádelo para un total más exacto.",
     "empty": "Aún no has terminado libros en este periodo."
